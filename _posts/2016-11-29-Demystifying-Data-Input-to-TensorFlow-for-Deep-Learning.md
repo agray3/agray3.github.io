@@ -5,7 +5,7 @@ date: 2016-11-29
 ---
 
 <p>
-<i> This is a follow on to the "MNIST For ML Beginners" and "Deep MNIST for Experts" <a href=https://www.tensorflow.org/versions/r0.11/tutorials/index.html target="_blank"> TensorFlow tutorials</a>, where you generate your own images to act as the input data. The aim is to help you get to the point where you are comfortable in using TensorFlow with your own data, and also provides the opportunity for you to experiment by creating different datasets for training. </i>
+<i> This article acts as a follow on to the "MNIST For ML Beginners" and "Deep MNIST for Experts" <a href=https://www.tensorflow.org/versions/r0.11/tutorials/index.html target="_blank"> TensorFlow tutorials</a>, where you generate your own images to act as the input data. The aim is to help you get to the point where you are comfortable in using TensorFlow with your own data, and also provides the opportunity for you to experiment by creating different datasets for training. </i>
 </p>
 
 <h2> Introduction </h2>
