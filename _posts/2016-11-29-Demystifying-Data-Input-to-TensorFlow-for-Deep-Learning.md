@@ -18,25 +18,24 @@ This tutorial address these 2 issues as follows:
 2. You are free to explore by changing the way the images are created (contents, resolution, number of classes ...).
 
 
-<p> This tutorial assumes you are using a UNIX based system such as Linux or OSX.  
-</p>
+<This tutorial assumes you are using a UNIX based system such as Linux or OSX.  
+
 
 <h2>Shape Sorting</h2>
 
 <IMG SRC="shape_sorter.jpg" ALT="TensorFlow Data Input" WIDTH=256 HEIGHT=256>
 
-<p>
+
 If you can't find a nearby toddler to sort your shapes for you, don't worry: help is here. You are going to create a virtual shape sorting algorithm.
 
 
 <h3>Creating the shapes</h3>
 
 
-<p> You will create images of shapes using the  <a href=http://matplotlib.org target="_blank">Matplotlib</a> python module, if you don't already have this on your system then please see the  <a href=http://matplotlib.org/users/installing.html target="_blank">installation instructions here</a>.
+You will create images of shapes using the [Matplotlib](http://matplotlib.org)  python module, if you don't already have this on your system then please see the [installation instructions her](http://matplotlib.org/users/installing.html) 
 
-<p>We are going to use python to create images of shapes with random positions and sizes: to keep things simple we are going to stick to 2 classes (squares and triangles), and to keep training times low we are going to use low resolution of 32x32 (similar to the 28x28 of MNIST) - after the tutorial you can adjust these to your satisfaction. 
+We are going to use python to create images of shapes with random positions and sizes: to keep things simple we are going to stick to 2 classes (squares and triangles), and to keep training times low we are going to use low resolution of 32x32 (similar to the 28x28 of MNIST) - after the tutorial you can adjust these to your satisfaction. 
 
-<p>
 First, create a new directory to work in:
 <pre>
 mkdir shapesorter
@@ -51,8 +50,8 @@ mkdir -p data/validate/squares
 mkdir -p data/validate/triangles
 </pre>
 
-<p> The python script to automatically create a set of squares and triangles is below. This uses random numbers to vary position and size of these shapes. Please read through the comments in the script which describe the different stages.
-</p>
+The python script to automatically create a set of squares and triangles is below. This uses random numbers to vary position and size of these shapes. Please read through the comments in the script which describe the different stages.
+
 
 <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #008800; font-weight: bold">import</span> <span style="color: #0e84b5; font-weight: bold">matplotlib.path</span> <span style="color: #008800; font-weight: bold">as</span> <span style="color: #0e84b5; font-weight: bold">mpath</span>
 <span style="color: #008800; font-weight: bold">import</span> <span style="color: #0e84b5; font-weight: bold">matplotlib.patches</span> <span style="color: #008800; font-weight: bold">as</span> <span style="color: #0e84b5; font-weight: bold">mpatches</span>
@@ -131,14 +130,12 @@ size<span style="color: #333333">=</span><span style="color: #0000DD; font-weigh
         plt<span style="color: #333333">.</span>close(fig)    
 </pre></div>
 
-
-<p>
 You now have a selection of 4000 squares and 4000 triangles in the <code>train/squares</code>  and <code>train/triangles</code> directories respectively:
-<p>
+
 <IMG SRC="shapes.png" ALT="TensorFlow Data Input" WIDTH=512>
 
 
-<p>
+
 Now, we will move a quarter of these to the <code>validate/squares</code>  and <code>validate/triangles</code> directories:
 
 <pre>
@@ -160,18 +157,15 @@ squares
 triangles
 </pre>
 
-<p>
-Now, to convert our images to TensorFlow format, we are going to just use the <a href=https://raw.githubusercontent.com/tensorflow/models/master/inception/inception/data/build_image_data.py target="_blank">build_image_data.py</a> that is bundeled with the Inception TensorFlow model. Get this by clinking on the above link, and then File->Save in your browser.
+Now, to convert our images to TensorFlow format, we are going to just use the [build_image_data.py](https://raw.githubusercontent.com/tensorflow/models/master/inception/inception/data/build_image_data.py) script that is bundeled with the Inception TensorFlow model. Get this by clinking on the above link, and then File->Save in your browser.
 
-
-<p>
 We can just use this a "black box" to convert our data (but we get some insight as to what it is doing later when we read the data within TensorFlow). Run the following command
 <pre>
 python build_image_data.py --train_directory=./train --output_directory=./  \
 --validation_directory=./validate --labels_file=mylabels.txt   \
 --train_shards=1 --validation_shards=1 --num_threads=1 
 </pre>
-<p>
+
 We have told the script where to find the input files, and labels, and it will create a file containing all training images <code>train-00000-of-00001</code> and another containing all validation images <code>validation-00000-of-00001</code> in TensorFlow format. We can now use these to train and validate our model.
 
 Now change back up to the top-level directory:
@@ -181,9 +175,9 @@ cd ..
 
 <h3>Training the model</h3>
 
-<p>In this section will see how to read in the previously generated TensorFlow data files, and train the model. Please see the comments in each of the code snippets below. The full script can be downloaded from **TODO. 
+In this section will see how to read in the previously generated TensorFlow data files, and train the model. Please see the comments in each of the code snippets below. The full script can be downloaded from **TODO. 
 
-<p>First, we import the required modules and set some parameters:
+First, we import the required modules and set some parameters:
 
 <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #008800; font-weight: bold">import</span> <span style="color: #0e84b5; font-weight: bold">tensorflow</span> <span style="color: #008800; font-weight: bold">as</span> <span style="color: #0e84b5; font-weight: bold">tf</span>
 <span style="color: #008800; font-weight: bold">import</span> <span style="color: #0e84b5; font-weight: bold">sys</span>
@@ -200,7 +194,7 @@ height<span style="color: #333333">=</span><span style="color: #0000DD; font-wei
 width<span style="color: #333333">=</span><span style="color: #0000DD; font-weight: bold">32</span>
 </pre></div>
 
-<p>Now, we can define a function which instructs TensorFlow how to read the data:
+Now, we can define a function which instructs TensorFlow how to read the data:
 <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #888888"># Function to tell TensorFlow how to read a single image from input file</span>
 <span style="color: #008800; font-weight: bold">def</span> <span style="color: #0066BB; font-weight: bold">getImage</span>(filename):
     <span style="color: #888888"># convert filenames to a queue for an input pipeline.</span>
@@ -256,7 +250,7 @@ width<span style="color: #333333">=</span><span style="color: #0000DD; font-weig
     <span style="color: #008800; font-weight: bold">return</span> label, image
 </pre></div>
 
-<p> We can then, using this function:
+We can then, using this function:
 
 <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #888888"># associate the &quot;label&quot; and &quot;image&quot; objects with the corresponding features read from </span>
 <span style="color: #888888"># a single example in the training data file</span>
@@ -288,7 +282,7 @@ x <span style="color: #333333">=</span> tf<span style="color: #333333">.</span>p
 y_ <span style="color: #333333">=</span> tf<span style="color: #333333">.</span>placeholder(tf<span style="color: #333333">.</span>float32, [<span style="color: #007020">None</span>, nClass])
 </pre></div>
 
-<p> We are now ready to define the model. First, the simple model  (adapted from "MNIST For ML Beginners"):
+We are now ready to define the model. First, the simple model  (adapted from "MNIST For ML Beginners"):
 <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #008800; font-weight: bold">if</span> simpleModel:
   <span style="color: #888888"># run simple model y=Wx+b given in TensorFlow &quot;MNIST&quot; tutorial</span>
 
@@ -305,7 +299,7 @@ y_ <span style="color: #333333">=</span> tf<span style="color: #333333">.</span>
   y <span style="color: #333333">=</span> tf<span style="color: #333333">.</span>nn<span style="color: #333333">.</span>softmax(tf<span style="color: #333333">.</span>matmul(x, W) <span style="color: #333333">+</span> b)
 </pre></div>
 
-<p> and also the convolutional neural network (adapted from "Deep MNIST for Experts") 
+and also the convolutional neural network (adapted from "Deep MNIST for Experts") 
 
 <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #008800; font-weight: bold">else</span>:
   <span style="color: #888888"># run convolutional neural network model given in &quot;Expert MNIST&quot; TensorFlow tutorial</span>
@@ -393,7 +387,7 @@ y_ <span style="color: #333333">=</span> tf<span style="color: #333333">.</span>
   y<span style="color: #333333">=</span>tf<span style="color: #333333">.</span>nn<span style="color: #333333">.</span>softmax(tf<span style="color: #333333">.</span>matmul(h_fc1_drop, W_fc2) <span style="color: #333333">+</span> b_fc2)
 </pre></div>
 
-<p>Now, before we start training we need to define the error, train step, correct prediction and accuracy (common to both models):
+Now, before we start training we need to define the error, train step, correct prediction and accuracy (common to both models):
 
 <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #888888"># measure of error of our model</span>
 <span style="color: #888888"># this needs to be minimised by adjusting W and b</span>
@@ -409,7 +403,7 @@ correct_prediction <span style="color: #333333">=</span> tf<span style="color: #
 accuracy <span style="color: #333333">=</span> tf<span style="color: #333333">.</span>reduce_mean(tf<span style="color: #333333">.</span>cast(correct_prediction, tf<span style="color: #333333">.</span>float32))
 </pre></div>
 
-<p>And now we are ready to initialise and run the training:
+And now we are ready to initialise and run the training:
 <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #888888"># initialize the variables</span>
 sess<span style="color: #333333">.</span>run(tf<span style="color: #333333">.</span>initialize_all_variables())
 
@@ -448,7 +442,7 @@ coord<span style="color: #333333">.</span>request_stop()
 coord<span style="color: #333333">.</span>join(threads)
 </pre></div>
 
-<p> By running the full script with the simple model (from "MNIST For ML Beginners"), you will see that the training accuracy is around 60-70%. So the model is working better than what you would get with a random guess as to the classification (which would give around 50%), but still not very high. However, now change 
+By running the full script with the simple model (from "MNIST For ML Beginners"), you will see that the training accuracy is around 60-70%. So the model is working better than what you would get with a random guess as to the classification (which would give around 50%), but still not very high. However, now change 
 <pre>
 simpleModel=True
 </pre>
