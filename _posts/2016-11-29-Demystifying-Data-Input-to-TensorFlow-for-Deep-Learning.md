@@ -468,13 +468,13 @@ Increase the resolution of the images you create to, say, 128x128 pixels, and tr
 
 <h3> Importance of Validation Set </h3>
  See what happens when you train using squares for <i>both</i> classes. As expected, the accuracy should be around 50% (i.e. the ability to predict is no better a uneducated guess since there is no conceptual difference between the classes). Now, temporarily replace the line
-<code>
+<pre>
   vbatch_xs, vbatch_ys = sess.run([vimageBatch, vlabelBatch])
-</code>
+</pre>
 with
-<code>
+<pre>
   vbatch_xs, vbatch_ys = sess.run([imageBatch, labelBatch])
-</code>
+</pre>
 to use the training images for validation. You will see that the accuracy rises significantly above 50%, which is misleading: this demonstrating the importance of using a separate set of images for validation of the model.
 
 <h3> Number of Classes </h3>
