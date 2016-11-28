@@ -8,9 +8,12 @@ This article acts as a follow on to the "MNIST For ML Beginners" and "Deep MNIST
 <h2> Introduction </h2>
 
 [TensorFlow](https://www.tensorflow.org/) is an incredibly powerful new framework for deep learning. The above-mentioned tutorials, which use the MNIST data set of hand-written numbers, give an excellent introduction, and should be completed in advance. The aim here is to address the following limitations of the existing tutorials:
+
 1. The MNIST data pre-exists in TensorFlow format and is loaded automatically, which can be a bit mysterious if you have no experience of data format manipulation in TensorFlow.
 2. Since the MNIST dataset is fixed, there is little scope for experimentation through adjusting the images and network to really get a feel for how to deal with particular aspects of real data.
+
 This tutorial address these 2 issues as follows:
+
 1. You create your own images in a standard "png" format (that you can easily view), and you convert to TensorFlow format. These are images of shapes created from python using the matplotlib module. 
 2. You are free to explore by changing the way the images are created (contents, resolution, number of classes ...).
 
