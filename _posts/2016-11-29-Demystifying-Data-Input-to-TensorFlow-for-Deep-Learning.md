@@ -82,7 +82,7 @@ size<span style="color: #333333">=</span><span style="color: #0000DD; font-weigh
         <span style="color: #888888">#initialise a new path to be used to draw on the figure</span>
         Path <span style="color: #333333">=</span> mpath<span style="color: #333333">.</span>Path
 
-        <span style="color: #888888">#set position and scaler of each shape using random numbers</span>
+        <span style="color: #888888">#set position and scale of each shape using random numbers</span>
         <span style="color: #888888">#the coefficients are used to just try and prevent too many shapes from </span>
         <span style="color: #888888">#spilling off the edge of the image</span>
         basex<span style="color: #333333">=</span><span style="color: #6600EE; font-weight: bold">0.7</span><span style="color: #333333">*</span>random<span style="color: #333333">.</span>random()
@@ -158,7 +158,7 @@ squares
 triangles
 </pre>
 
-Now, to convert our images to TensorFlow TFRecord format, we are going to just use the [build_image_data.py](https://raw.githubusercontent.com/tensorflow/models/master/inception/inception/data/build_image_data.py) script that is bundeled with the Inception TensorFlow model. Get this by clinking on the above link, and then File->Save in your browser.
+Now, to convert our images to TensorFlow TFRecord format, we are going to just use the [build_image_data.py](https://raw.githubusercontent.com/tensorflow/models/master/inception/inception/data/build_image_data.py) script that is bundled with the Inception TensorFlow model. Get this by clinking on the above link, and then File->Save in your browser.
 
 We can just use this a "black box" to convert our data (but we get some insight as to what it is doing later when we read the data within TensorFlow). Run the following command
 <pre>
@@ -252,7 +252,7 @@ Now, we can define a function which instructs TensorFlow how to read the data:
     <span style="color: #008800; font-weight: bold">return</span> label, image
 </pre></div>
 
-Notice the structure of the full example in terms of its component features. If you were to look into the [build_image_data.py](https://raw.githubusercontent.com/tensorflow/models/master/inception/inception/data/build_image_data.py) script that we used above to write the files, you would see that it organises the features precicely in this arrangement.
+Notice the structure of the full example in terms of its component features. If you were to look into the [build_image_data.py](https://raw.githubusercontent.com/tensorflow/models/master/inception/inception/data/build_image_data.py) script that we used above to write the files, you would see that it organises the features precisely in this arrangement.
 
 We can then, using this function: 
 
@@ -286,7 +286,7 @@ x <span style="color: #333333">=</span> tf<span style="color: #333333">.</span>p
 y_ <span style="color: #333333">=</span> tf<span style="color: #333333">.</span>placeholder(tf<span style="color: #333333">.</span>float32, [<span style="color: #007020">None</span>, nClass])
 </pre></div>
 
-The <code>tf.train.shuffle_batch</code> fucntion is being used to get a randomly selected batch of 100 images from the data set. The other parameters can be adjusted for performance as described [here](https://www.tensorflow.org/versions/r0.11/api_docs/python/io_ops.html#shuffle_batch).
+The <code>tf.train.shuffle_batch</code> function is being used to get a randomly selected batch of 100 images from the data set. The other parameters can be adjusted for performance as described [here](https://www.tensorflow.org/versions/r0.11/api_docs/python/io_ops.html#shuffle_batch).
 
 We are now ready to define the model. First, the simple model  (adapted from "MNIST For ML Beginners"):
 
@@ -463,10 +463,8 @@ to run the convolutional neural network (from "Deep MNIST for Experts") and run 
 
 <h2>Further Work</h2>
 
-<ul>
-<li>Increase the resolution of the images you create to, say, 128x128 pixels, and train using these larger images (remembering to set the size properly at the top of the training script). You should see similar behaviour (but the training time will be longer).
-<li> See what happens when you train using squares for <i>both</i> classes. As expected, the accuracy should be around 50% (i.e. the ability to predict is no better a un-educated guess since there is no conceptual difference between the classes). Now, temporarily replace the line
-
+* Increase the resolution of the images you create to, say, 128x128 pixels, and train using these larger images (remembering to set the size properly at the top of the training script). You should see similar behaviour (but the training time will be longer).
+* See what happens when you train using squares for <i>both</i> classes. As expected, the accuracy should be around 50% (i.e. the ability to predict is no better a un-educated guess since there is no conceptual difference between the classes). Now, temporarily replace the line
 <pre>
   vbatch_xs, vbatch_ys = sess.run([vimageBatch, vlabelBatch])
 </pre>
@@ -475,10 +473,8 @@ with
   vbatch_xs, vbatch_ys = sess.run([imageBatch, labelBatch])
 </pre>
 to use the training images for validation. You will see that the accuracy rises significantly above 50%, which is misleading: this demonstrating the importance of using a separate set of images for validation of the model.
-<li> Add more classes. Work out how to draw different shapes using the matplotliub script, and adjust the training script to be able to train a network with more classes. 
-</ul>
-</body>
-</html>
+* Add more classes. Work out how to draw different shapes using the matplotlib script, and adjust the training script to be able to train a network with more classes. 
+
 
 
 
