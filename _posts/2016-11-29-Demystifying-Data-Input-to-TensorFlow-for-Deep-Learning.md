@@ -450,7 +450,7 @@ coord<span style="color: #333333">.</span>request_stop()
 coord<span style="color: #333333">.</span>join(threads)
 </pre></div>
 
-By running the full script with the simple model (from "MNIST For ML Beginners"), you will see that the training accuracy is around 60-70%. So the model is working better than what you would get with a random guess as to the classification (which would give around 50%), but still not very high. However, now change 
+By running the full script with the simple model (from "MNIST For ML Beginners"), you will see that the training accuracy is around 60-70%. So the model better than useless (where a useless model would be equivalent to an uneducated guess, which would result in 50% accuracy), but still not very high. However, now change 
 <pre>
 simpleModel=True
 </pre>
@@ -463,17 +463,22 @@ to run the convolutional neural network (from "Deep MNIST for Experts") and run 
 
 <h2>Further Work</h2>
 
-* Increase the resolution of the images you create to, say, 128x128 pixels, and train using these larger images (remembering to set the size properly at the top of the training script). You should see similar behaviour (but the training time will be longer).
-* See what happens when you train using squares for <i>both</i> classes. As expected, the accuracy should be around 50% (i.e. the ability to predict is no better a un-educated guess since there is no conceptual difference between the classes). Now, temporarily replace the line
-<pre>
+<h3> Image Resolution </h3>
+Increase the resolution of the images you create to, say, 128x128 pixels, and train using these larger images (remembering to set the size properly at the top of the training script). You should see similar behaviour (but the training time will be longer).
+
+<h3> Importance of Validation Set </h3>
+ See what happens when you train using squares for <i>both</i> classes. As expected, the accuracy should be around 50% (i.e. the ability to predict is no better a uneducated guess since there is no conceptual difference between the classes). Now, temporarily replace the line
+<code>
   vbatch_xs, vbatch_ys = sess.run([vimageBatch, vlabelBatch])
-</pre>
+</code>
 with
-<pre>
+<code>
   vbatch_xs, vbatch_ys = sess.run([imageBatch, labelBatch])
-</pre>
+</code>
 to use the training images for validation. You will see that the accuracy rises significantly above 50%, which is misleading: this demonstrating the importance of using a separate set of images for validation of the model.
-* Add more classes. Work out how to draw different shapes using the matplotlib script, and adjust the training script to be able to train a network with more classes. 
+
+<h3> Number of Classes </h3>
+Add more classes. Work out how to draw different shapes using the matplotlib script, and adjust the training script to be able to train a network with more classes. 
 
 
 
