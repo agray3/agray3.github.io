@@ -26,7 +26,6 @@ This tutorial assumes you are using a UNIX based system such as Linux or OSX.
 ![Shape Sorter]({{ site.url }}/files/shape_sorter.jpg)
 
 
-
 If you can't find a nearby toddler to sort your shapes for you, don't worry: help is here. You are going to create a virtual shape sorting algorithm.
 
 
@@ -133,8 +132,7 @@ size<span style="color: #333333">=</span><span style="color: #0000DD; font-weigh
 
 You now have a selection of 4000 squares and 4000 triangles in the <code>train/squares</code>  and <code>train/triangles</code> directories respectively:
 
-<IMG SRC="shapes.png" ALT="TensorFlow Data Input" WIDTH=512>
-
+![Virtual Shapes]({{ site.url }}/files/shapes.png)
 
 
 Now, we will move a quarter of these to the <code>validate/squares</code>  and <code>validate/triangles</code> directories:
