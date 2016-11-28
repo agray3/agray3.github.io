@@ -35,7 +35,7 @@ If you can't find a nearby toddler to sort your shapes for you, don't worry: hel
 
 <h3>Creating the shapes</h3>
 
-You will create images of shapes using the [Matplotlib](http://matplotlib.org)  python module. If you don't already have this on your system then please see the [installation instructions her](http://matplotlib.org/users/installing.html) 
+You will create images of shapes using the [Matplotlib](http://matplotlib.org)  python module. If you don't already have this on your system then please see the [installation instructions here](http://matplotlib.org/users/installing.html) 
 
 We are going to use python to create images of shapes with random positions and sizes: to keep things simple we are going to stick to 2 classes (squares and triangles), and to keep training time reasonable we are going to use low resolution of 32x32 (similar to the 28x28 of MNIST) - after the tutorial you can adjust these to your satisfaction. 
 
