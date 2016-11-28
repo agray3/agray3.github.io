@@ -3,22 +3,26 @@ layout: post
 title: "Demystifying Data Input to TensorFlow for Deep Learning"
 date: 2016-11-29
 ---
-This article acts as a follow on to the "MNIST For ML Beginners" and "Deep MNIST for Experts" [TensorFlow tutorials](https://www.tensorflow.org/versions/r0.11/tutorials/index.html) where you generate your own images to act as the input data. The aim is to help you get to the point where you are comfortable in using TensorFlow with your own data, and also provides the opportunity for you to experiment by creating different datasets for training. 
 
 <h2> Introduction </h2>
 
-[TensorFlow](https://www.tensorflow.org/) is an incredibly powerful new framework for deep learning. The above-mentioned tutorials, which use the MNIST data set of hand-written numbers, give an excellent introduction, and should be completed in advance. The aim here is to address the following limitations of the existing tutorials:
+[TensorFlow](https://www.tensorflow.org/) is an incredibly powerful new framework for deep learning. The "MNIST For ML Beginners" and "Deep MNIST for Experts" [TensorFlow tutorials](https://www.tensorflow.org/versions/r0.11/tutorials/index.html) give an excellent introduction to the framework. This article acts as a follow-on tutorial which addresses the following issues:
 
-1. The MNIST data pre-exists in TensorFlow format and is loaded automatically, which can be a bit mysterious if you have no experience of data format manipulation in TensorFlow.
+1. The above tutorials use the MNIST dataset of hand written numbers, which pre-exists in TensorFlow format and is loaded automatically. This can be a bit mysterious if you have no experience of data format manipulation in TensorFlow.
 2. Since the MNIST dataset is fixed, there is little scope for experimentation through adjusting the images and network to really get a feel for how to deal with particular aspects of real data.
 
-This tutorial address these 2 issues as follows:
+
+Here,
 
 1. You create your own images in a standard "png" format (that you can easily view), and you convert to TensorFlow format. These are images of shapes created from python using the matplotlib module. 
 2. You are free to explore by changing the way the images are created (contents, resolution, number of classes ...).
 
 
-This tutorial assumes you are using a UNIX based system such as Linux or OSX.  
+The aim is to help you get to the point where you are comfortable in
+using TensorFlow with your own data, and also provide the opportunity
+for you to experiment by creating different datasets and adjusting the
+neural network accordingly.  This tutorial assumes you are using a
+UNIX based system such as Linux or OSX.
 
 
 <h2>Shape Sorting</h2>
