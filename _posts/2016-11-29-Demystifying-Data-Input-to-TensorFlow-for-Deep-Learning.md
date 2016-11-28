@@ -8,13 +8,13 @@ date: 2016-11-29
 
 [TensorFlow](https://www.tensorflow.org/) is an incredibly powerful new framework for deep learning. The "MNIST For ML Beginners" and "Deep MNIST for Experts" [TensorFlow tutorials](https://www.tensorflow.org/versions/r0.11/tutorials/index.html) give an excellent introduction to the framework. This article acts as a follow-on tutorial which addresses the following issues:
 
-1. The above tutorials use the MNIST dataset of hand written numbers, which pre-exists in TensorFlow format and is loaded automatically. This can be a bit mysterious if you have no experience of data format manipulation in TensorFlow.
+1. The above tutorials use the MNIST dataset of hand written numbers, which pre-exists in TensorFlow TFRecord format and is loaded automatically. This can be a bit mysterious if you have no experience of data format manipulation in TensorFlow.
 2. Since the MNIST dataset is fixed, there is little scope for experimentation through adjusting the images and network to really get a feel for how to deal with particular aspects of real data.
 
 
 Here,
 
-1. You create your own images in a standard "png" format (that you can easily view), and you convert to TensorFlow format. These are images of shapes created from python using the matplotlib module. 
+1. You create your own images in a standard "png" format (that you can easily view), and you convert to TensorFlow TFRecord format. These are images of shapes created from python using the matplotlib module. 
 2. You are free to explore by changing the way the images are created (contents, resolution, number of classes ...).
 
 
@@ -35,10 +35,9 @@ If you can't find a nearby toddler to sort your shapes for you, don't worry: hel
 
 <h3>Creating the shapes</h3>
 
+You will create images of shapes using the [Matplotlib](http://matplotlib.org)  python module. If you don't already have this on your system then please see the [installation instructions her](http://matplotlib.org/users/installing.html) 
 
-You will create images of shapes using the [Matplotlib](http://matplotlib.org)  python module, if you don't already have this on your system then please see the [installation instructions her](http://matplotlib.org/users/installing.html) 
-
-We are going to use python to create images of shapes with random positions and sizes: to keep things simple we are going to stick to 2 classes (squares and triangles), and to keep training times low we are going to use low resolution of 32x32 (similar to the 28x28 of MNIST) - after the tutorial you can adjust these to your satisfaction. 
+We are going to use python to create images of shapes with random positions and sizes: to keep things simple we are going to stick to 2 classes (squares and triangles), and to keep training time reasonable we are going to use low resolution of 32x32 (similar to the 28x28 of MNIST) - after the tutorial you can adjust these to your satisfaction. 
 
 First, create a new directory to work in:
 <pre>
@@ -138,7 +137,6 @@ You now have a selection of 4000 squares and 4000 triangles in the <code>train/s
 
 ![Virtual Shapes]({{ site.url }}/files/shapes.png)
 
-
 Now, we will move a quarter of these to the <code>validate/squares</code>  and <code>validate/triangles</code> directories:
 
 <pre>
@@ -160,7 +158,7 @@ squares
 triangles
 </pre>
 
-Now, to convert our images to TensorFlow format, we are going to just use the [build_image_data.py](https://raw.githubusercontent.com/tensorflow/models/master/inception/inception/data/build_image_data.py) script that is bundeled with the Inception TensorFlow model. Get this by clinking on the above link, and then File->Save in your browser.
+Now, to convert our images to TensorFlow TFRecord format, we are going to just use the [build_image_data.py](https://raw.githubusercontent.com/tensorflow/models/master/inception/inception/data/build_image_data.py) script that is bundeled with the Inception TensorFlow model. Get this by clinking on the above link, and then File->Save in your browser.
 
 We can just use this a "black box" to convert our data (but we get some insight as to what it is doing later when we read the data within TensorFlow). Run the following command
 <pre>
@@ -169,7 +167,7 @@ python build_image_data.py --train_directory=./train --output_directory=./  \
 --train_shards=1 --validation_shards=1 --num_threads=1 
 </pre>
 
-We have told the script where to find the input files, and labels, and it will create a file containing all training images <code>train-00000-of-00001</code> and another containing all validation images <code>validation-00000-of-00001</code> in TensorFlow format. We can now use these to train and validate our model.
+We have told the script where to find the input files, and labels, and it will create a file containing all training images <code>train-00000-of-00001</code> and another containing all validation images <code>validation-00000-of-00001</code> in TensorFlow TFRecord format. We can now use these to train and validate our model.
 
 Now change back up to the top-level directory:
 <pre>
@@ -178,7 +176,7 @@ cd ..
 
 <h3>Training the model</h3>
 
-In this section will see how to read in the previously generated TensorFlow data files, and train the model. Please see the comments in each of the code snippets below. The full script can be downloaded [here]({{ site.url }}/files/shapesorter.py). 
+In this section will see how to read in the previously generated TensorFlow TFRecord data files, and train the model. Please see the comments in each of the code snippets below. The full script can be downloaded [here]({{ site.url }}/files/shapesorter.py). 
 
 First, we import the required modules and set some parameters:
 
@@ -254,7 +252,9 @@ Now, we can define a function which instructs TensorFlow how to read the data:
     <span style="color: #008800; font-weight: bold">return</span> label, image
 </pre></div>
 
-We can then, using this function:
+Notice the structure of the full example in terms of its component features. If you were to look into the [build_image_data.py](https://raw.githubusercontent.com/tensorflow/models/master/inception/inception/data/build_image_data.py) script that we used above to write the files, you would see that it organises the features precicely in this arrangement.
+
+We can then, using this function: 
 
 <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #888888"># associate the &quot;label&quot; and &quot;image&quot; objects with the corresponding features read from </span>
 <span style="color: #888888"># a single example in the training data file</span>
@@ -285,6 +285,8 @@ x <span style="color: #333333">=</span> tf<span style="color: #333333">.</span>p
 <span style="color: #888888"># similarly, we have a placeholder for true outputs (obtained from labels)</span>
 y_ <span style="color: #333333">=</span> tf<span style="color: #333333">.</span>placeholder(tf<span style="color: #333333">.</span>float32, [<span style="color: #007020">None</span>, nClass])
 </pre></div>
+
+The <code>tf.train.shuffle_batch</code> fucntion is being used to get a randomly selected batch of 100 images from the data set. The other parameters can be adjusted for performance as described [here](https://www.tensorflow.org/versions/r0.11/api_docs/python/io_ops.html#shuffle_batch).
 
 We are now ready to define the model. First, the simple model  (adapted from "MNIST For ML Beginners"):
 
@@ -472,7 +474,7 @@ with
 <pre>
   vbatch_xs, vbatch_ys = sess.run([imageBatch, labelBatch])
 </pre>
-to use the training images for validation. You will see that the accuracy rises significantly above 50%. which is wrong. This shows the importance of using a separe set of images for validation.
+to use the training images for validation. You will see that the accuracy rises significantly above 50%, which is misleading: this demonstrating the importance of using a separate set of images for validation of the model.
 <li> Add more classes. Work out how to draw different shapes using the matplotliub script, and adjust the training script to be able to train a network with more classes. 
 </ul>
 </body>
