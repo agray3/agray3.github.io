@@ -283,6 +283,7 @@ y_ <span style="color: #333333">=</span> tf<span style="color: #333333">.</span>
 </pre></div>
 
 We are now ready to define the model. First, the simple model  (adapted from "MNIST For ML Beginners"):
+
 <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #008800; font-weight: bold">if</span> simpleModel:
   <span style="color: #888888"># run simple model y=Wx+b given in TensorFlow &quot;MNIST&quot; tutorial</span>
 
@@ -404,6 +405,7 @@ accuracy <span style="color: #333333">=</span> tf<span style="color: #333333">.<
 </pre></div>
 
 And now we are ready to initialise and run the training:
+
 <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #888888"># initialize the variables</span>
 sess<span style="color: #333333">.</span>run(tf<span style="color: #333333">.</span>initialize_all_variables())
 
