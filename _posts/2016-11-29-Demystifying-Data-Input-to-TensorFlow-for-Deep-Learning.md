@@ -18,12 +18,13 @@ This tutorial address these 2 issues as follows:
 2. You are free to explore by changing the way the images are created (contents, resolution, number of classes ...).
 
 
-<This tutorial assumes you are using a UNIX based system such as Linux or OSX.  
+This tutorial assumes you are using a UNIX based system such as Linux or OSX.  
 
 
 <h2>Shape Sorting</h2>
 
-<IMG SRC="shape_sorter.jpg" ALT="TensorFlow Data Input" WIDTH=256 HEIGHT=256>
+![Shape Sorter]({{ site.url }}/files/shape_sorter.jpg)
+
 
 
 If you can't find a nearby toddler to sort your shapes for you, don't worry: help is here. You are going to create a virtual shape sorting algorithm.
@@ -195,6 +196,7 @@ width<span style="color: #333333">=</span><span style="color: #0000DD; font-weig
 </pre></div>
 
 Now, we can define a function which instructs TensorFlow how to read the data:
+
 <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #888888"># Function to tell TensorFlow how to read a single image from input file</span>
 <span style="color: #008800; font-weight: bold">def</span> <span style="color: #0066BB; font-weight: bold">getImage</span>(filename):
     <span style="color: #888888"># convert filenames to a queue for an input pipeline.</span>
