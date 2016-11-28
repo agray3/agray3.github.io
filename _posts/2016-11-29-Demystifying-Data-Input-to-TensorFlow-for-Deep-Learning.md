@@ -174,7 +174,7 @@ cd ..
 
 <h3>Training the model</h3>
 
-In this section will see how to read in the previously generated TensorFlow data files, and train the model. Please see the comments in each of the code snippets below. The full script can be downloaded from **TODO. 
+In this section will see how to read in the previously generated TensorFlow data files, and train the model. Please see the comments in each of the code snippets below. The full script can be downloaded [here]({{ site.url }}/files/shapesorter.py). 
 
 First, we import the required modules and set some parameters:
 
