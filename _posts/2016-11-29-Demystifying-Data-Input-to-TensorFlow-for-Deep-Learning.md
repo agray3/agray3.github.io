@@ -197,6 +197,8 @@ width<span style="color: #333333">=</span><span style="color: #0000DD; font-weig
 
 Now, we can define a function which instructs TensorFlow how to read the data:
 
+<p>[UPDATE (27th March 2017): below script updated to be compatible with TensortFlow 1.X - "pack" replaced with "stack".]
+
 <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #888888"># Function to tell TensorFlow how to read a single image from input file</span>
 <span style="color: #008800; font-weight: bold">def</span> <span style="color: #0066BB; font-weight: bold">getImage</span>(filename):
     <span style="color: #888888"># convert filenames to a queue for an input pipeline.</span>
@@ -247,7 +249,7 @@ Now, we can define a function which instructs TensorFlow how to read the data:
     <span style="color: #888888"># re-define label as a &quot;one-hot&quot; vector </span>
     <span style="color: #888888"># it will be [0,1] or [1,0] here. </span>
     <span style="color: #888888"># This approach can easily be extended to more classes.</span>
-    label<span style="color: #333333">=</span>tf<span style="color: #333333">.</span>pack(tf<span style="color: #333333">.</span>one_hot(label<span style="color: #333333">-</span><span style="color: #0000DD; font-weight: bold">1</span>, nClass))
+    label<span style="color: #333333">=</span>tf<span style="color: #333333">.</span>stack(tf<span style="color: #333333">.</span>one_hot(label<span style="color: #333333">-</span><span style="color: #0000DD; font-weight: bold">1</span>, nClass))
 
     <span style="color: #008800; font-weight: bold">return</span> label, image
 </pre></div>
@@ -412,8 +414,10 @@ accuracy <span style="color: #333333">=</span> tf<span style="color: #333333">.<
 
 And now we are ready to initialise and run the training:
 
+<p>[UPDATE (27th March 2017): below script updated to be compatible with TensortFlow 1.X - "initialize_all_variables" replaced with "global_variables_initializer".]
+
 <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #888888"># initialize the variables</span>
-sess<span style="color: #333333">.</span>run(tf<span style="color: #333333">.</span>initialize_all_variables())
+sess<span style="color: #333333">.</span>run(tf<span style="color: #333333">.</span>global_variables_initializer())
 
 <span style="color: #888888"># start the threads used for reading files</span>
 coord <span style="color: #333333">=</span> tf<span style="color: #333333">.</span>train<span style="color: #333333">.</span>Coordinator()
