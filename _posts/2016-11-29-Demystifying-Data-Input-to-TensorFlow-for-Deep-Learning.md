@@ -197,7 +197,7 @@ width<span style="color: #333333">=</span><span style="color: #0000DD; font-weig
 
 Now, we can define a function which instructs TensorFlow how to read the data:
 
-<p>[UPDATE (27th March 2017): below script updated to be compatible with TensortFlow 1.X - "pack" replaced with "stack".]
+<p>[UPDATE (27th March 2017): below script updated to be compatible with TensorFlow 1.X - "pack" replaced with "stack".]
 
 <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #888888"># Function to tell TensorFlow how to read a single image from input file</span>
 <span style="color: #008800; font-weight: bold">def</span> <span style="color: #0066BB; font-weight: bold">getImage</span>(filename):
@@ -414,7 +414,7 @@ accuracy <span style="color: #333333">=</span> tf<span style="color: #333333">.<
 
 And now we are ready to initialise and run the training:
 
-<p>[UPDATE (27th March 2017): below script updated to be compatible with TensortFlow 1.X - "initialize_all_variables" replaced with "global_variables_initializer".]
+<p>[UPDATE (27th March 2017): below script updated to be compatible with TensorFlow 1.X - "initialize_all_variables" replaced with "global_variables_initializer".]
 
 <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #888888"># initialize the variables</span>
 sess<span style="color: #333333">.</span>run(tf<span style="color: #333333">.</span>global_variables_initializer())
