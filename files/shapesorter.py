@@ -62,7 +62,7 @@ def getImage(filename):
     # re-define label as a "one-hot" vector 
     # it will be [0,1] or [1,0] here. 
     # This approach can easily be extended to more classes.
-    label=tf.pack(tf.one_hot(label-1, nClass))
+    label=tf.stack(tf.one_hot(label-1, nClass))
 
     return label, image
 
@@ -215,7 +215,7 @@ accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
 # run the session
 
 # initialize the variables
-sess.run(tf.initialize_all_variables())
+sess.run(tf.global_variables_initializer())
 
 # start the threads used for reading files
 coord = tf.train.Coordinator()
